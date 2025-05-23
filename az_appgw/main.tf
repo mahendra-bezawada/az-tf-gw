@@ -58,7 +58,7 @@ resource "azurerm_application_gateway" "appgw" {
       policy_name          = var.ssl_profile[0].ssl_policy[0].policy_name
       policy_type          = var.ssl_profile[0].ssl_policy[0].policy_type
       min_protocol_version = coalesce(var.ssl_profile[0].ssl_policy[0].protocol_version, "TLSv1_2")
-      cipher_suites        = var.ssl_profile[0].ssl_policy[0].cipher_suites
+      #cipher_suites        = var.ssl_profile[0].ssl_policy[0].cipher_suites
     }
   }
 
