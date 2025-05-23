@@ -5,7 +5,7 @@ ssl_profile = [
       {
         policy_name      = "AppGwSslPolicy20170401S"
         policy_type      = "Predefined"
-        protocol_version = "TLSv1_3"
+        protocol_version = ""
       }
     ]
   }
