@@ -11,7 +11,6 @@ variable "ssl_profile" {
     ssl_policy = list(object({
       policy_name         = string
       policy_type         = string
-      cipher_suites       = list(string)
       protocol_version    = string
     }))
   }))
