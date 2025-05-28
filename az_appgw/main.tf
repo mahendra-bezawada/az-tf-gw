@@ -60,26 +60,29 @@ resource "azurerm_application_gateway" "appgw" {
   #      #cipher_suites        = var.ssl_profile[0].ssl_policy[0].cipher_suites
   #    }
   # }
-}
-
-
-dynamic "ssl_profile" {
+  dynamic "ssl_profile" {
   for_each = var.ssl_profile
   content {
-    name = ssl_profile.value.name
+      name = ssl_profile.value.name
+    }
   }
+
+  dynamic ssl_policy {
+      for_each = var.ssl_policy
+      content {
+        policy_type          = lookup(ssl_policy.value,"policy_type","Predefined")
+        policy_name          = lookup(ssl_policy.value,"policy_name","AppGwSslPolicy20220101")
+        min_protocol_version = coalesce(
+          ssl_profile.value.ssl_policy.min_protocol_version,
+          "TLSv1_2"
+        )
+    }
+
+
 }
 
- dynamic ssl_policy {
-    for_each = var.ssl_policy
-    content {
-      policy_type          = lookup(ssl_policy.value,"policy_type","Predefined")
-      policy_name          = lookup(ssl_policy.value,"policy_name","AppGwSslPolicy20220101")
-      min_protocol_version = coalesce(
-        ssl_profile.value.ssl_policy.min_protocol_version,
-        "TLSv1_2"
-      )
-  }
+
+
 
   backend_address_pool {
     name = "appgw-backend-pool"
