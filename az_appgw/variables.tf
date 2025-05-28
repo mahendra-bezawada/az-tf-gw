@@ -15,11 +15,16 @@ variable "ssl_policy" {
 
 
 variable "ssl_profile" {
-  description = "List of SSL profiles (uses global SSL policy)"
   type = list(object({
-    name = string
+    name       = string
+    ssl_policy = object({
+      policy_type          = string
+      policy_name          = string
+      min_protocol_version = string
+    })
   }))
 }
+
 
 
 /*
