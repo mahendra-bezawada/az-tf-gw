@@ -66,17 +66,19 @@ dynamic "ssl_profile" {
   for_each = var.ssl_profile
   content {
     name = ssl_profile.value.name
+  }
+}
 
-    ssl_policy {
-      policy_type          = ssl_profile.value.ssl_policy.policy_type
-      policy_name          = ssl_profile.value.ssl_policy.policy_name
+ dynamic ssl_policy {
+    for_each = var.ssl_policy
+    content {
+      policy_type          = lookup(ssl_policy.value,"policy_type","Predefined")
+      policy_name          = lookup(ssl_policy.value,"policy_name","AppGwSslPolicy20220101")
       min_protocol_version = coalesce(
         ssl_profile.value.ssl_policy.min_protocol_version,
         "TLSv1_2"
       )
-    }
   }
-}
 
   backend_address_pool {
     name = "appgw-backend-pool"
