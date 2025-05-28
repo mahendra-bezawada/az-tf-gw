@@ -11,7 +11,7 @@ variable "ssl_profile" {
     ssl_policy = object({
       policy_name      = string
       policy_type      = string
-      protocol_version = optional(string)
+      min_protocol_version = optional(string)
     })
   }))
   default = [
@@ -20,7 +20,7 @@ variable "ssl_profile" {
         ssl_policy = {
           policy_name      = "AppGwSslPolicy20170401S"
           policy_type      = "Predefined"
-          protocol_version = null
+          min_protocol_version = null
         }
       }
     ]
