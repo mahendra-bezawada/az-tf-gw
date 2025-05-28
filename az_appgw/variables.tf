@@ -14,4 +14,15 @@ variable "ssl_profile" {
       protocol_version = optional(string)
     })
   }))
+
+  default = [
+      {
+        name = "defaultSSLProfile"
+        ssl_policy = {
+          policy_name      = "AppGwSslPolicy20170401S"
+          policy_type      = "Predefined"
+          protocol_version = null
+        }
+      }
+    ]
 }
