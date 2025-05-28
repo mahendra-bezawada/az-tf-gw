@@ -51,23 +51,12 @@ resource "azurerm_application_gateway" "appgw" {
     port = 443
   }
 
- # ssl_profile {
- #   name = var.ssl_profile[0].name
-  #    ssl_policy {
-  #      policy_name          = var.ssl_profile[0].ssl_policy[0].policy_name
-  #      policy_type          = var.ssl_profile[0].ssl_policy[0].policy_type
-  #      min_protocol_version = coalesce(var.ssl_profile[0].ssl_policy[0].min_protocol_version, "TLSv1_2")
-  #      #cipher_suites        = var.ssl_profile[0].ssl_policy[0].cipher_suites
-  #    }
-  # }
   dynamic "ssl_profile" {
-  for_each = var.ssl_profile
-  content {
-      name = ssl_profile.value.name
-    }
-  }
+    for_each = var.ssl_profile
+    content {
+        name = ssl_profile.value.name
 
-  dynamic ssl_policy {
+      dynamic ssl_policy {
       for_each = var.ssl_policy
       content {
         policy_type          = lookup(ssl_policy.value,"policy_type","Predefined")
@@ -76,9 +65,9 @@ resource "azurerm_application_gateway" "appgw" {
           ssl_profile.value.ssl_policy.min_protocol_version,
           "TLSv1_2"
         )
+      }
+      }
     }
-
-
 }
 
 
