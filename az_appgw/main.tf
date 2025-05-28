@@ -56,7 +56,7 @@ resource "azurerm_application_gateway" "appgw" {
     content {
         name = ssl_profile.value.name
 
-      dynamic ssl_policy {
+      dynamic "ssl_policy" {
       for_each = var.ssl_policy
       content {
         policy_type          = lookup(ssl_policy.value,"policy_type","Predefined")
