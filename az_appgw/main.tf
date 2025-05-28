@@ -56,8 +56,7 @@ resource "azurerm_application_gateway" "appgw" {
     content {
         name = ssl_profile.value.name
 
-      dynamic "ssl_policy" {
-      for_each = var.ssl_policy
+      ssl_policy {
       policy_name          = ssl_profile.value.ssl_policy.policy_name
       min_protocol_version = ssl_profile.value.ssl_policy.min_protocol_version
       }
