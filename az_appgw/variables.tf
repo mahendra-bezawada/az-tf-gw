@@ -4,6 +4,27 @@ variable "location" {
   default     = "East US"
 }
 
+
+variable "ssl_profile" {
+  description = "List of SSL profiles with optional nested ssl_policy"
+  type = list(object({
+    name        = string
+    ssl_policy = object({
+      min_protocol_version = optional(string)
+    })
+  }))
+}
+
+variable "ssl_policy" {
+  description = "List of SSL policy settings to override or use globally"
+  type = list(object({
+    policy_type          = string
+    policy_name          = string
+  }))
+}
+
+
+/*
 variable "ssl_profile" {
   description = "AppGateway SSL profile"
   type = list(object({
@@ -25,3 +46,4 @@ variable "ssl_profile" {
       }
     ]
 }
+*/
