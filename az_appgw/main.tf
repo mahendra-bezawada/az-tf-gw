@@ -71,7 +71,7 @@ dynamic "ssl_profile" {
       policy_type          = ssl_profile.value.ssl_policy.policy_type
       policy_name          = ssl_profile.value.ssl_policy.policy_name
       min_protocol_version = coalesce(
-        ssl_profile.value.ssl_policy.protocol_version,
+        ssl_profile.value.ssl_policy.min_protocol_version,
         "TLSv1_2"
       )
     }
