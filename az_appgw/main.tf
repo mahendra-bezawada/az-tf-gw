@@ -51,16 +51,32 @@ resource "azurerm_application_gateway" "appgw" {
     port = 443
   }
 
-  ssl_profile {
-    name = var.ssl_profile[0].name
+ # ssl_profile {
+ #   name = var.ssl_profile[0].name
+#    ssl_policy {
+#      policy_name          = var.ssl_profile[0].ssl_policy[0].policy_name
+#      policy_type          = var.ssl_profile[0].ssl_policy[0].policy_type
+#      min_protocol_version = coalesce(var.ssl_profile[0].ssl_policy[0].protocol_version, "TLSv1_2")
+#      #cipher_suites        = var.ssl_profile[0].ssl_policy[0].cipher_suites
+#    }
+#  }
+
+
+dynamic "ssl_profile" {
+  for_each = var.ssl_profile
+  content {
+    name = ssl_profile.value.name
 
     ssl_policy {
-      policy_name          = var.ssl_profile[0].ssl_policy[0].policy_name
-      policy_type          = var.ssl_profile[0].ssl_policy[0].policy_type
-      min_protocol_version = coalesce(var.ssl_profile[0].ssl_policy[0].protocol_version, "TLSv1_2")
-      #cipher_suites        = var.ssl_profile[0].ssl_policy[0].cipher_suites
+      policy_type          = ssl_profile.value.ssl_policy.policy_type
+      policy_name          = ssl_profile.value.ssl_policy.policy_name
+      min_protocol_version = coalesce(
+        ssl_profile.value.ssl_policy.protocol_version,
+        "TLSv1_2"
+      )
     }
   }
+}
 
   backend_address_pool {
     name = "appgw-backend-pool"
