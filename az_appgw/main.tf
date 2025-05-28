@@ -61,7 +61,6 @@ resource "azurerm_application_gateway" "appgw" {
     for_each = var.ssl_profile
     content {
         name = ssl_profile.value.name
-c:\Users\Mahendra\appgw.pfx
       ssl_policy {
       policy_name          = ssl_profile.value.ssl_policy.policy_name
       min_protocol_version = ssl_profile.value.ssl_policy.min_protocol_version
