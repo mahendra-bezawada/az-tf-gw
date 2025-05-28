@@ -14,3 +14,5 @@ ssl_profile = [
     }
   }
 ]
+
+certificate_password = "TestingPassword123!"

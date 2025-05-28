@@ -35,6 +35,12 @@ resource "azurerm_application_gateway" "appgw" {
     tier     = "Standard_v2"
     capacity = 1
   }
+  
+  ssl_certificate {
+  name     = "appgw-cert"
+  data     = filebase64("./appgw.pfx")
+  password = var.certificate_password
+  }
 
   gateway_ip_configuration {
     name      = "appgw-ip-config"
@@ -55,7 +61,7 @@ resource "azurerm_application_gateway" "appgw" {
     for_each = var.ssl_profile
     content {
         name = ssl_profile.value.name
-
+c:\Users\Mahendra\appgw.pfx
       ssl_policy {
       policy_name          = ssl_profile.value.ssl_policy.policy_name
       min_protocol_version = ssl_profile.value.ssl_policy.min_protocol_version
@@ -85,6 +91,7 @@ resource "azurerm_application_gateway" "appgw" {
     frontend_port_name             = "frontendPort"
     protocol                       = "Https"
     ssl_profile_name               = var.ssl_profile[0].name
+    ssl_certificate_name           = "appgw-cert"
   }
 
   request_routing_rule {

@@ -25,6 +25,10 @@ variable "ssl_profile" {
   }))
 }
 
+variable "certificate_password" {
+  description = "Password for the PFX certificate."
+  type        = string
+}
 
 
 /*
