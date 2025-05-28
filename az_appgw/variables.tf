@@ -4,7 +4,18 @@ variable "location" {
   default     = "East US"
 }
 
+variable "ssl_profile" {
+  type = list(object({
+    name = string
+    ssl_policy = object({
+      policy_type          = string
+      policy_name          = string
+      min_protocol_version = string
+    })
+  }))
+}
 
+/*
 variable "ssl_profile" {
   description = "List of SSL profiles with optional nested ssl_policy"
   type = list(object({
@@ -22,6 +33,7 @@ variable "ssl_policy" {
     policy_name          = string
   }))
 }
+*/
 
 
 /*
