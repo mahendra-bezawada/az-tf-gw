@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "rg" {
 }
 */
 
-
+/*
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet-appgw"
   address_space       = ["10.0.0.0/16"]
@@ -16,9 +16,10 @@ resource "azurerm_virtual_network" "vnet" {
 resource "azurerm_subnet" "subnet" {
   name                 = "subnet-appgw"
   resource_group_name  = var.resource_group_name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  virtual_network_name = var.vnet_name
   address_prefixes     = ["10.0.1.0/24"]
 }
+
 
 resource "azurerm_public_ip" "pip" {
   name                = "pip-appgw"
@@ -27,6 +28,7 @@ resource "azurerm_public_ip" "pip" {
   allocation_method   = "Static"
   sku                 = "Standard"
 }
+*/
 
 resource "azurerm_application_gateway" "appgw" {
   name                = "appgw-demo"
@@ -47,12 +49,12 @@ resource "azurerm_application_gateway" "appgw" {
 
   gateway_ip_configuration {
     name      = "appgw-ip-config"
-    subnet_id = azurerm_subnet.subnet.id
+    subnet_id = var.subnet_id
   }
 
   frontend_ip_configuration {
     name                 = "appgw-fe"
-    public_ip_address_id = azurerm_public_ip.pip.id
+    public_ip_address_id = var.public_ip
   }
 
   frontend_port {
