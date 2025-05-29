@@ -62,6 +62,13 @@ resource "azurerm_application_gateway" "appgw" {
     port = 443
   }
 
+  ssl_policy {
+      policy_name          = "AppGwSslPolicy20220101" #ssl_profile.value.ssl_policy.policy_name
+      policy_type          = "Predefined"
+      min_protocol_version = "TLSv1_2" #ssl_profile.value.ssl_policy.min_protocol_version
+  }
+
+/*
   dynamic "ssl_profile" {
     for_each = var.ssl_profile
     content {
@@ -73,8 +80,7 @@ resource "azurerm_application_gateway" "appgw" {
       }
     }
 }
-
-
+*/
 
 
   backend_address_pool {
