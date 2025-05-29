@@ -10,7 +10,7 @@ terraform {
 provider "azurerm" {
   features {}
   
-  api_versions_override = {
-    "Microsoft.Network/applicationGateways" = "2023-02-01"
-  }
+#  api_versions_override = {
+#    "Microsoft.Network/applicationGateways" = "2023-02-01"
+#  }
 }
