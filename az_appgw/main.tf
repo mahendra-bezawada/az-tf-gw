@@ -68,7 +68,10 @@ resource "azurerm_application_gateway" "appgw" {
       min_protocol_version = "TLSv1_2" #ssl_profile.value.ssl_policy.min_protocol_version
   }
   */
-
+  ssl_policy {
+    policy_type = "Predefined"
+    policy_name = "AppGwSslPolicy20220101"
+  }
 
   dynamic "ssl_profile" {
     for_each = var.ssl_profile
