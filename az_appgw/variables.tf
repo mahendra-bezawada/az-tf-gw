@@ -80,3 +80,21 @@ variable "resource_group_name" {
   description = "The name of an existing resource group"
   type        = string
 }
+
+variable "subnet_id" {
+  description = "The name of an existing subnet group"
+  type        = string
+}
+
+
+variable "vnet_name" {
+  description = "The name of an existing vnet"
+  type        = string
+}
+
+
+variable "public_ip" {
+  description = "The name of an existing public_ip"
+  type        = string
+}
+
