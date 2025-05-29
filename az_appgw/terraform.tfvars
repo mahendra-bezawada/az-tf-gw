@@ -16,3 +16,6 @@ ssl_profile = [
 ]
 
 certificate_password = "TestingPassword123!"
+
+resource_group_name = "rg-appgw-demo"
+location            = "eastus"

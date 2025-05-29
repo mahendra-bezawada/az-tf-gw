@@ -75,3 +75,13 @@ variable "ssl_profile" {
     ]
 }
 */
+
+variable "resource_group_name" {
+  description = "The name of an existing resource group"
+  type        = string
+}
+
+variable "location" {
+  description = "Azure location of the existing resource group"
+  type        = string
+}
