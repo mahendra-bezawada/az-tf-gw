@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Init
         run: |
           cd az_appgw
-          terraform init
+          terraform init -backend-config=backend.config
 
       - name: Terraform Validate
         run: |
