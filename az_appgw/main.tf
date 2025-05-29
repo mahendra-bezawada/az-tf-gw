@@ -75,7 +75,7 @@ resource "azurerm_application_gateway" "appgw" {
     content {
         name = ssl_profile.value.name
       ssl_policy {
-      policy_name          = "AppGwSslPolicy20220101" #ssl_profile.value.ssl_policy.policy_name
+      policy_name          = "AppGwSslPolicy20170401S" #ssl_profile.value.ssl_policy.policy_name
       policy_type          = "Predefined"
       min_protocol_version = "TLSv1_2" #ssl_profile.value.ssl_policy.min_protocol_version
       }
