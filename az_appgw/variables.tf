@@ -4,14 +4,14 @@ variable "location" {
   default     = "East US"
 }
 
-variable "ssl_policy" {
-  description = "Global SSL policy applied to all ssl_profiles"
-  type = object({
-    policy_type          = string
-    policy_name          = string
-    min_protocol_version = string
-  })
-}
+#variable "ssl_policy" {
+#  description = "Global SSL policy applied to all ssl_profiles"
+#  type = object({
+#    policy_type          = string
+#    policy_name          = string
+#    min_protocol_version = string
+#  })
+#}
 
 
 variable "ssl_profile" {
