@@ -46,7 +46,7 @@ jobs:
       - name: Print API Version Used (from log)
         run: |
           echo "=== Extracting API versions from terraform-debug.log ==="
-          grep -Eo 'api-version=[0-9\-]+' terraform-debug.log | sort | uniq
+          grep -Eo 'api-version=[0-9\-]+' az_appgw/terraform-debug.log | sort | uniq
 
       - name: Terraform Validate
         run: |
