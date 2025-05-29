@@ -94,7 +94,7 @@ resource "azurerm_application_gateway" "appgw" {
     frontend_ip_configuration_name = "appgw-fe"
     frontend_port_name             = "frontendPort"
     protocol                       = "Https"
-    ssl_profile_name               = var.ssl_profile.name
+    ssl_profile_name               = "mySSLProfile"
     ssl_certificate_name           = "appgw-cert"
   }
 
