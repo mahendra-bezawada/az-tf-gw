@@ -9,7 +9,7 @@ ssl_profile = [
     name = "mySSLProfile"
     ssl_policy = {
       policy_type          = "Predefined"
-      policy_name          = "AppGwSslPolicy20170401S"
+      policy_name          = "AppGwSslPolicy20220101S"
       min_protocol_version = "TLSv1_2"
     }
   }
