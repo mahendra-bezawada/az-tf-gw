@@ -30,6 +30,24 @@ jobs:
           cd az_appgw
           terraform init -backend-config=backend.config
 
+      - name: Print Terraform Provider Info
+        run: |
+          cd az_appgw
+          terraform providers
+
+      - name: Terraform Plan (with DEBUG log)
+        env:
+          TF_LOG: DEBUG
+          TF_LOG_PATH: terraform-debug.log
+        run: |
+          cd az_appgw
+          terraform plan
+
+      - name: Print API Version Used (from log)
+        run: |
+          echo "=== Extracting API versions from terraform-debug.log ==="
+          grep -Eo 'api-version=[0-9\-]+' terraform-debug.log | sort | uniq
+
       - name: Terraform Validate
         run: |
           cd az_appgw
